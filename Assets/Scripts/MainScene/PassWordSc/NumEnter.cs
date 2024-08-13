@@ -1,19 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class Sound : MonoBehaviour
+public class NumEnter : MonoBehaviour
 {
-    public AudioSource DefaultSound, TwoSeeSound;
+    public TextMeshPro txt_CurPassWord;
+    public int PassWord;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        DefaultSound.volume =  1 - TwoSeeSound.volume;
+        
+    }
+    private void OnMouseDown()
+    {
+        txt_CurPassWord.text += PassWord.ToString();
     }
 }

@@ -12,7 +12,9 @@ public class Player : MonoBehaviour
     [Header("플레이어 설정")]
     Rigidbody2D rigid;
     public float PlayerSpeed = 5f;
+    public float CurPlayerSpeed = 5f;
     public float PlayerJump = 5f;
+    public float CurPlayerJump = 5f;
     public bool IsGround = false;
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,7 @@ public class Player : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
 
         Vector3 PlayerPos = new Vector3(h, 0, 0);
-        transform.position += PlayerPos * PlayerSpeed * Time.deltaTime;
+        transform.position += PlayerPos * CurPlayerSpeed * Time.deltaTime;
     }
     private void Update()
     {
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                rigid.AddForce(Vector3.up * PlayerJump, ForceMode2D.Impulse);
+                rigid.AddForce(Vector3.up * CurPlayerJump, ForceMode2D.Impulse);
                 IsGround = false;
             }
         }
