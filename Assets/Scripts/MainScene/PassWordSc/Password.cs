@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Password : MonoBehaviour
 {
+    Transition Transition;
     DoorLock DoorLock;
     Player Player;
     public int PassWordAnser;
@@ -13,6 +14,7 @@ public class Password : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Transition = FindAnyObjectByType<Transition>();
         DoorLock = FindAnyObjectByType<DoorLock>();
         Player = FindAnyObjectByType<Player>();
         txt_CurPassWord.text = "";
@@ -36,16 +38,17 @@ public class Password : MonoBehaviour
             if (passwordAnser == PassWordAnser)
             {
                 Debug.Log("Å»Ãâ ¼º°ø");
-                DoorLock.PassWord.DOLocalMoveY(-9.11f, 0.4f).SetEase(Ease.InQuint);
                 DoorLock.isPassWordAppear = false;
                 Player.CurPlayerSpeed = Player.PlayerSpeed;
                 Player.CurPlayerJump = Player.PlayerJump;
+                StartCoroutine(Transition.MoveToNextScene());
             }
             else
             {
                 txt_CurPassWord.text = "Err";
-                DoorLock.PassWord.DOLocalMoveY(-9.11f, 0.4f).SetEase(Ease.InQuint);
+                DoorLock.PassWord.DOLocalMoveY(-983.8799f, 0.4f).SetEase(Ease.InQuint);
                 DoorLock.isPassWordAppear = false;
+                Player.IsPassword = false;
                 Player.CurPlayerSpeed = Player.PlayerSpeed;
                 Player.CurPlayerJump = Player.PlayerJump;
             }

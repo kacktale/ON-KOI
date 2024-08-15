@@ -34,13 +34,15 @@ public class DoorLock : MonoBehaviour
                     txt_CurPassWord.text = "";
                     PassWord.DOLocalMoveY(0.6f, 0.4f).SetEase(Ease.InQuint);
                     isPassWordAppear = true;
+                    Player.IsPassword = true;
                     Player.CurPlayerSpeed = 0;
                     Player.CurPlayerJump = 0;
                 }
                 else
                 {
                     txt_CurPassWord.text = "";
-                    PassWord.DOLocalMoveY(-9.11f, 0.4f).SetEase(Ease.InQuint);
+                    PassWord.DOLocalMoveY(-983.8799f, 0.4f).SetEase(Ease.InQuint);
+                    Player.IsPassword = false;
                     isPassWordAppear = false;
                     Player.CurPlayerSpeed = Player.PlayerSpeed;
                     Player.CurPlayerJump = Player.PlayerJump;
@@ -58,10 +60,13 @@ public class DoorLock : MonoBehaviour
             isPlayerApproched = true;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        Outline.DOScale(new Vector3(1,1,1), 0.4f).SetEase(Ease.OutQuint);
-        Txt_Info.DOMoveY(-6, 0.4f).SetEase(Ease.OutQuint);
-        isPlayerApproched = false;
+        if (other.CompareTag("Player"))
+        {
+            Outline.DOScale(new Vector3(1, 1, 1), 0.4f).SetEase(Ease.OutQuint);
+            Txt_Info.DOMoveY(-6, 0.4f).SetEase(Ease.OutQuint);
+            isPlayerApproched = false;
+        }
     }
 }

@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public AudioSource DefaultSound, TwoSeeSound;
     public Transform TwoSee;
+    public GameObject TwoSeeObj;
     bool IsTwoSeed = false;
     bool IsDefault = true;
     [Header("플레이어 설정")]
@@ -16,9 +17,12 @@ public class Player : MonoBehaviour
     public float PlayerJump = 5f;
     public float CurPlayerJump = 5f;
     public bool IsGround = false;
+    public bool IsPassword = false;
     // Start is called before the first frame update
     void Start()
     {
+        
+        TwoSeeObj.SetActive(false);
         DefaultSound = GameObject.Find("Click").GetComponents<AudioSource>()[1];
         TwoSeeSound = GameObject.Find("Click").GetComponents<AudioSource>()[0];
         DefaultSound.Play();
@@ -39,7 +43,7 @@ public class Player : MonoBehaviour
     {
         if (IsGround)
         {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) &&!IsPassword)
             {
                 rigid.AddForce(Vector3.up * CurPlayerJump, ForceMode2D.Impulse);
                 IsGround = false;
@@ -47,6 +51,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftShift) && !IsTwoSeed)
         {
+            TwoSeeObj.SetActive(true);
             IsDefault = false;
             TwoSee.DOScale(new Vector3(40, 40, 1), 0.4f).SetEase(Ease.InQuint);
             IsTwoSeed = true;
@@ -72,7 +77,9 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         IsDefault = true;
-        TwoSee.DOScale(new Vector3(1, 1, 1), 0.4f).SetEase(Ease.OutQuint);
+        TwoSee.DOScale(new Vector3(0.01f, 0.01f, 0.01f), 0.4f).SetEase(Ease.OutQuint);
+        yield return new WaitForSeconds(0.4f);
+        TwoSeeObj.SetActive(false);
         yield return new WaitForSeconds(2);
         IsTwoSeed = false;
     }

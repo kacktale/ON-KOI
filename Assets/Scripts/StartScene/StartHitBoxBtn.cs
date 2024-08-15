@@ -7,6 +7,7 @@ public class StartHitBoxBtn : MonoBehaviour
 {
     public void OnMouseDown()
     {
-        SceneManager.LoadScene("Main");
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
     }
 }
