@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("가져오는거")]
-    Music music;
+    //Music music;
     LightToAttack LightToAttack;
     public AudioSource DefaultSound, TwoSeeSound;
     public Transform TwoSee;
@@ -31,8 +31,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        music = FindAnyObjectByType<Music>();
-        Debug.Log(music.MusicValue);
+       // music = FindAnyObjectByType<Music>();
+        //Debug.Log(music.MusicValue);
         LightToAttack = FindAnyObjectByType<LightToAttack>();
         TwoSeeObj.SetActive(false);
         DefaultSound = GameObject.Find("Click").GetComponents<AudioSource>()[1];
