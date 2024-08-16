@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("가져오는거")]
+    Music music;
+    LightToAttack LightToAttack;
     public AudioSource DefaultSound, TwoSeeSound;
     public Transform TwoSee;
-    public GameObject TwoSeeObj;
+    public GameObject TwoSeeObj,LightObj;
     bool IsTwoSeed = false;
     bool IsDefault = true;
     [Header("플레이어 설정")]
@@ -16,12 +19,21 @@ public class Player : MonoBehaviour
     public float CurPlayerSpeed = 5f;
     public float PlayerJump = 5f;
     public float CurPlayerJump = 5f;
+    public float CoolTime = 5f;
+    public float CurCoolTime = 5f;
+    [Header("콜라이더 설정")]
     public bool IsGround = false;
     public bool IsPassword = false;
+    public bool IsDoor = false;
+    bool IsLight = false;
+    [Header("부가설정")]
+    public bool IsFlashGet = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        music = FindAnyObjectByType<Music>();
+        Debug.Log(music.MusicValue);
+        LightToAttack = FindAnyObjectByType<LightToAttack>();
         TwoSeeObj.SetActive(false);
         DefaultSound = GameObject.Find("Click").GetComponents<AudioSource>()[1];
         TwoSeeSound = GameObject.Find("Click").GetComponents<AudioSource>()[0];
@@ -36,8 +48,19 @@ public class Player : MonoBehaviour
     {
         float h = Input.GetAxisRaw("Horizontal");
 
-        Vector3 PlayerPos = new Vector3(h, 0, 0);
-        transform.position += PlayerPos * CurPlayerSpeed * Time.deltaTime;
+        if(h == 1 && !IsDoor && !IsLight)
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (h == -1 && !IsDoor && !IsLight)
+        {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        if (!IsDoor && !IsLight)
+        {
+            Vector3 PlayerPos = new Vector3(h, 0, 0);
+            transform.position += PlayerPos * CurPlayerSpeed * Time.deltaTime;
+        }
     }
     private void Update()
     {
@@ -57,7 +80,12 @@ public class Player : MonoBehaviour
             IsTwoSeed = true;
             StartCoroutine(OffTwoSee());
         }
-        if(IsDefault && DefaultSound.volume <1)
+        if (Input.GetKeyDown(KeyCode.Z) && CurCoolTime <= 0 && IsFlashGet && !IsDoor)
+        {
+            CurCoolTime = CoolTime;
+            StartCoroutine(LightAttack());
+        }
+        if (IsDefault && DefaultSound.volume <1)
         {
             DefaultSound.volume += Time.deltaTime * 6;
             TwoSeeSound.volume -= Time.deltaTime * 6;
@@ -72,7 +100,18 @@ public class Player : MonoBehaviour
             DefaultSound.volume -= Time.deltaTime * 6;
             TwoSeeSound.volume += Time.deltaTime * 6;
         }
+        CurCoolTime -= Time.deltaTime;
     }
+
+    public IEnumerator LightAttack()
+    {
+        IsLight = true;
+        LightObj.SetActive(true);
+        yield return new WaitForSeconds(1);
+        IsLight = false;
+        LightObj.SetActive(false);
+    }
+
     public IEnumerator OffTwoSee()
     {
         yield return new WaitForSeconds(5);

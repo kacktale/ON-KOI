@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - DoorLockHit
   - TwoSee
+  - Light
   layers:
   - Default
   - TransparentFX
