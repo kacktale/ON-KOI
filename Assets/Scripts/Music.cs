@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Music : MonoBehaviour
 {
-    public float MusicValue;
+    public float MusicValue = 1f;
+    public float SoundEffectValue = 1f;
+    public bool IsProCessing = true;
     // Start is called before the first frame update
     void Start()
     {
