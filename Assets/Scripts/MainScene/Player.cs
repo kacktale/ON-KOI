@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("°¡Á®¿À´Â°Å")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â°ï¿½")]
     //Music music;
     LightToAttack LightToAttack;
     public AudioSource DefaultSound, TwoSeeSound;
@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public GameObject TwoSeeObj,LightObj;
     bool IsTwoSeed = false;
     bool IsDefault = true;
-    [Header("ÇÃ·¹ÀÌ¾î ¼³Á¤")]
+    [Header("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     Rigidbody2D rigid;
     public float PlayerSpeed = 5f;
     public float CurPlayerSpeed = 5f;
@@ -21,12 +21,12 @@ public class Player : MonoBehaviour
     public float CurPlayerJump = 5f;
     public float CoolTime = 5f;
     public float CurCoolTime = 5f;
-    [Header("ÄÝ¶óÀÌ´õ ¼³Á¤")]
+    [Header("ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public bool IsGround = false;
     public bool IsPassword = false;
     public bool IsDoor = false;
     bool IsLight = false;
-    [Header("ºÎ°¡¼³Á¤")]
+    [Header("ï¿½Î°ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public bool IsFlashGet = false;
     // Start is called before the first frame update
     void Start()
