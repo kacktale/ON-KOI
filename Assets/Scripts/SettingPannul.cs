@@ -16,4 +16,12 @@ public class SettingPannul : MonoBehaviour
     {
         Music.SoundEffectValue = slider.value;
     }
+    public void PostVol()
+    {
+        Music.PostValue = slider.value;
+    }
+    public void VigganetVol()
+    {
+        Music.BloomValue = slider.value;
+    }
 }

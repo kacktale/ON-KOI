@@ -8,6 +8,8 @@ TagManager:
   - DoorLockHit
   - TwoSee
   - Light
+  - Ladder
+  - TpLadder
   layers:
   - Default
   - TransparentFX

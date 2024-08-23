@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class StartHitBoxBtn : MonoBehaviour
 {
+    public Warning warning;
     public void OnMouseDown()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex + 1);
+        StartCoroutine(warning.WarningPannul());
     }
 }

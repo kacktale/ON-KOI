@@ -31,6 +31,7 @@ public class DoorLock : MonoBehaviour
             {
                 if (!isPassWordAppear)
                 {
+                    txt_CurPassWord.color += new Color(0, 0, 0, 255);
                     txt_CurPassWord.text = "";
                     PassWord.DOLocalMoveY(0.6f, 0.4f).SetEase(Ease.InQuint);
                     isPassWordAppear = true;
@@ -38,10 +39,11 @@ public class DoorLock : MonoBehaviour
                     Player.CurPlayerSpeed = 0;
                     Player.CurPlayerJump = 0;
                 }
-                else
+                else if(isPassWordAppear)
                 {
+                    txt_CurPassWord.color -= new Color(0, 0, 0, 255);
                     txt_CurPassWord.text = "";
-                    PassWord.DOLocalMoveY(-983.8799f, 0.4f).SetEase(Ease.InQuint);
+                    PassWord.DOLocalMoveY(-1200f, 0.4f).SetEase(Ease.InQuint);
                     Player.IsPassword = false;
                     isPassWordAppear = false;
                     Player.CurPlayerSpeed = Player.PlayerSpeed;
@@ -49,6 +51,10 @@ public class DoorLock : MonoBehaviour
                 }
             }
         }
+    }
+    public void OffPassWord()
+    {
+        PassWord.DOLocalMoveY(-1200f, 0.4f).SetEase(Ease.InQuint);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
