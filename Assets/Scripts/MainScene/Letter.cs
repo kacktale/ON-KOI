@@ -10,19 +10,28 @@ public class Letter : MonoBehaviour
 {
     public GameObject HiddenObj;
 
+    Enemy enemy;
     Player Player;
     public Transform Outline, LetterObj;
     public RectTransform Txt_Info;
     public TextMeshProUGUI Txt_Name;
 
     public bool isPassWordAppear = false;
+    public bool IsBossAppear = false;
     bool isPlayerApproched = false;
     bool isOutpaper = false;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        Player = FindAnyObjectByType<Player>();
+        enemy = FindAnyObjectByType<Enemy>();
+    }
+
     void Start()
     {
         HiddenObj.SetActive(false);
-        Player = FindAnyObjectByType<Player>();
+        
         Outline.localScale = new Vector3(1, 1, 1);
         Txt_Info.position = new Vector3(0, -6, 0);
     }
@@ -37,30 +46,40 @@ public class Letter : MonoBehaviour
             {
                 if (!isPassWordAppear)
                 {
-                    LetterObj.DOLocalMoveY(0.6f, 0.4f).SetEase(Ease.InQuint);
+                    LetterObj.DOLocalMoveY(63.9f, 0.4f).SetEase(Ease.InQuint);
+                    isOutpaper = true;
                     isPassWordAppear = true;
                     Player.IsPassword = true;
                     Player.CurPlayerSpeed = 0;
                     Player.CurPlayerJump = 0;
-                    isOutpaper = true;
                 }
                 else if(isPassWordAppear && isOutpaper)
                 {
+                    LetterObj.DORotate(new Vector3(0,180,90),0.4f);
                     isOutpaper = false;
                 }
                 else
                 {
-                    LetterObj.DOLocalMoveY(-9.11f, 0.4f).SetEase(Ease.InQuint);
-                    Player.IsPassword = false;
-                    isPassWordAppear = false;
-                    Player.CurPlayerSpeed = Player.PlayerSpeed;
-                    Player.CurPlayerJump = Player.PlayerJump;
-                    HiddenObj.SetActive(true);
-                    Destroy(gameObject);
+                    StartCoroutine(GetBack());
                 }
             }
         }
     }
+
+    IEnumerator GetBack()
+    {
+        LetterObj.DOLocalMoveY(-1025.61f, 0.4f).SetEase(Ease.InQuint);
+        yield return new WaitForSeconds(0.4f);
+        Player.IsPassword = false;
+        if(IsBossAppear)
+            enemy.IsChase = true;
+        //isPassWordAppear = false;
+        Player.CurPlayerSpeed = Player.PlayerSpeed;
+        Player.CurPlayerJump = Player.PlayerJump;
+        HiddenObj.SetActive(true);
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

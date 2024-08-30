@@ -7,15 +7,23 @@ using UnityEngine;
 
 public class Password : MonoBehaviour
 {
+    [Header("보스전")]
     public DoorGimic[] doorGimics;
     public DoorProsess Doorlist;
-    Transition Transition;
-    public DoorLock DoorLock;
-    Player Player;
-    public int[] PassWordAnser;
-    public TextMeshPro txt_CurPassWord;
+
     public bool FinalPhaze = false;
-    public int PassWordSetting = 0;
+
+    public int PassWordSetting = 0;//랜덤 비번 설정
+
+    Player Player;
+    Transition Transition;
+
+    [Header("필수요소")]
+    public DoorLock DoorLock;
+    public TextMeshPro txt_CurPassWord;
+    public int[] PassWordAnser;
+
+    [Header("자물쇠 종류 설정")]
     public bool ArrowPassWord = false;
     // Start is called before the first frame update
     void Start()

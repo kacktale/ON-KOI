@@ -8,11 +8,11 @@ public class Player : MonoBehaviour
     [Header("가져오는거")]
     Music music;
     LightToAttack LightToAttack;
-    public AudioSource DefaultSound, TwoSeeSound,FootSteep,TwoSeeEfects;
+    public AudioSource DefaultSound, TwoSeeSound, FootSteep, TwoSeeEfects;
     public Transform TwoSee;
-    public GameObject TwoSeeObj,LightObj;
-    bool IsTwoSeed = false;
-    bool IsDefault = true;
+    public GameObject TwoSeeObj, LightObj;
+    public bool IsTwoSeed = false;
+    public bool IsDefault = true;
 
     [Header("플레이어 설정")]
     Rigidbody2D rigid;
@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     public float CurPlayerJump = 5f;
     public float CoolTime = 5f;
     public float CurCoolTime = 5f;
+    bool isjump = false;
+    float PlayerRayEdge = 0.45f; 
 
     [Header("콜라이더 & 인터랙션")]
     public bool IsGround = false;
@@ -31,6 +33,9 @@ public class Player : MonoBehaviour
 
     [Header("부가설정")]
     public bool IsFlashGet = false;
+
+    [Header("레이캐스트 설정")]
+    public LayerMask LayerMask;
 
     // Start is called before the first frame update
     void Start()
@@ -56,47 +61,69 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!isjump)
+        {
+            Vector2 PlayerEdge = new Vector2(transform.position.x - PlayerRayEdge, transform.position.y);
+            RaycastHit2D Edgehit = Physics2D.Raycast(PlayerEdge, Vector2.down, 0.52f, LayerMask);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.52f, LayerMask);
+            Debug.DrawRay(PlayerEdge, Vector2.down, new Color(0, 1, 0));
+            Debug.DrawRay(transform.position, Vector2.down, new Color(0, 1, 0));
+            if (Edgehit.collider != null || hit.collider != null)
+            {
+                //Debug.Log(hit.collider.name);
+                IsGround = true;
+            }
+            else if(Edgehit.collider == null|| hit.collider == null)
+            {
+                IsGround = false;
+            }
+        }
+
         float h = Input.GetAxisRaw("Horizontal");
 
-        //오른쪽으로 바라보기
-        if(h == 1 && !IsDoor && !IsLight)
+        // 오른쪽으로 바라보기
+        if (h == 1 && !IsDoor && !IsLight)
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
             if (!FootSteep.isPlaying && IsGround)
             {
+                PlayerRayEdge = 0.45f;
                 FootSteep.Play();
             }
         }
-        //왼쪽으로 바라보기
+        // 왼쪽으로 바라보기
         else if (h == -1 && !IsDoor && !IsLight)
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
             if (!FootSteep.isPlaying && IsGround)
             {
+                PlayerRayEdge = -0.45f;
                 FootSteep.Play();
             }
         }
 
-        //인터랙션이 되지 않았을때
+        // 인터랙션이 되지 않았을때
         if (!IsDoor && !IsLight)
         {
             Vector3 PlayerPos = new Vector3(h, 0, 0);
             transform.position += PlayerPos * CurPlayerSpeed * Time.deltaTime;
         }
     }
+
     private void Update()
     {
-        //점프코드
+        // 점프코드
         if (IsGround)
         {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) &&!IsPassword)
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && !IsPassword)
             {
+                isjump = true;
                 rigid.AddForce(Vector3.up * CurPlayerJump, ForceMode2D.Impulse);
                 IsGround = false;
             }
         }
 
-        //투시코드
+        // 투시코드
         if (Input.GetKeyDown(KeyCode.LeftShift) && !IsTwoSeed)
         {
             TwoSeeObj.SetActive(true);
@@ -106,17 +133,17 @@ public class Player : MonoBehaviour
             StartCoroutine(OffTwoSee());
         }
 
-        //플래쉬코드(보스전용)
+        // 플래쉬코드(보스전용)
         if (Input.GetKeyDown(KeyCode.Z) && CurCoolTime <= 0 && IsFlashGet && !IsDoor)
         {
             CurCoolTime = CoolTime;
             StartCoroutine(LightAttack());
         }
 
-        //사운드 조절(투시 전)
-        if (IsDefault && DefaultSound.volume * music.MusicValue <1)
+        // 사운드 조절(투시 전)
+        if (IsDefault && DefaultSound.volume * music.MusicValue < 1)
         {
-            if(DefaultSound.volume < music.MusicValue)
+            if (DefaultSound.volume < music.MusicValue)
             {
                 DefaultSound.volume += Time.deltaTime * 6;
                 TwoSeeSound.volume -= Time.deltaTime * 6;
@@ -125,29 +152,29 @@ public class Player : MonoBehaviour
             else
             {
                 DefaultSound.volume = music.MusicValue;
-                TwoSeeSound.volume =0;
+                TwoSeeSound.volume = 0;
                 TwoSeeEfects.volume = 0;
             }
         }
-        //사운드 조절(투시 중)
-        else if(!IsDefault)
+        // 사운드 조절(투시 중)
+        else if (!IsDefault)
         {
-            if(TwoSeeSound.volume >= music.MusicValue)
+            if (TwoSeeSound.volume >= music.MusicValue)
             {
                 TwoSeeSound.volume = music.MusicValue;
                 TwoSeeEfects.volume = music.SoundEffectValue;
-                DefaultSound.volume =0;
+                DefaultSound.volume = 0;
             }
             DefaultSound.volume -= Time.deltaTime * 6;
             TwoSeeSound.volume += Time.deltaTime * 6;
             TwoSeeEfects.volume += Time.deltaTime * 6;
         }
 
-        //쿨타임
+        // 쿨타임
         CurCoolTime -= Time.deltaTime;
     }
 
-    //플래쉬 공격
+    // 플래쉬 공격
     public IEnumerator LightAttack()
     {
         IsLight = true;
@@ -159,7 +186,7 @@ public class Player : MonoBehaviour
         LightObj.SetActive(false);
     }
 
-    //투시 끄기
+    // 투시 끄기
     public IEnumerator OffTwoSee()
     {
         yield return new WaitForSeconds(5);
@@ -175,11 +202,12 @@ public class Player : MonoBehaviour
 
         IsTwoSeed = false;
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.gameObject.CompareTag("Ground"))
         {
-            IsGround = true;
+            isjump = false;
         }
     }
 }

@@ -22,13 +22,13 @@ public class HiddenObject : MonoBehaviour
     {
         if (IsAppear)
         {
-            textMeshProUGUI.DOColor(new Color(1, 1, 1, 4), 0.4f);
-            spriteRenderer.DOColor(new Color(1, 1, 1, 4), 0.4f);
+            textMeshProUGUI.DOFade(1, 0.4f);
+            spriteRenderer.DOFade(1, 0.4f);
         }
         else
         {
-            textMeshProUGUI.DOColor(new Color(1, 1, 1, 0), 0.4f);
-            spriteRenderer.DOColor(new Color(1, 1, 1, 0), 0.4f);
+            textMeshProUGUI.DOFade(0, 0.4f);
+            spriteRenderer.DOFade(0, 0.4f);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,11 +36,13 @@ public class HiddenObject : MonoBehaviour
         if (collision.gameObject.CompareTag("TwoSee"))
         {
             IsAppear = true;
-            Invoke("OffTwosee", 4.5f);
         }
     }
-    void OffTwosee()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        IsAppear = false;
+        if (collision.gameObject.CompareTag("TwoSee"))
+        {
+            IsAppear = false;
+        }
     }
 }

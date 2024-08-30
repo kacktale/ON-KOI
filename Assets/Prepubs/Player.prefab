@@ -192,6 +192,10 @@ MonoBehaviour:
   IsPassword: 0
   IsDoor: 0
   IsFlashGet: 0
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  groundCheckDistance: 0.1
 --- !u!82 &5384952938080013596
 AudioSource:
   m_ObjectHideFlags: 0
@@ -538,7 +542,7 @@ GameObject:
   - component: {fileID: 5357077102511823158}
   - component: {fileID: 6610965249856484545}
   - component: {fileID: 5133942743211121985}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TwoSee
   m_TagString: TwoSee
   m_Icon: {fileID: 0}

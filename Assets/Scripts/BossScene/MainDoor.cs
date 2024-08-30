@@ -10,18 +10,26 @@ public class MainDoor : MonoBehaviour
     [Header("진행 프로그래스 바")]
     public Slider Progress;
     public GameObject ProgressObj;
+    public bool Started = false;
     [Header("추가설정")]
     Player Player;
-    public Transform SeeWa;
+
+    DoorProsess DoorProsess;
+    public Transform SeeWa,DoorUl,O2Ul;
     public bool IsPlayerTouched = false;
     // Start is called before the first frame update
     void Start()
     {
+        DoorProsess = FindAnyObjectByType<DoorProsess>();
+
         ProgressObj.SetActive(false);
 
         Progress.value = 0;
 
         Player = FindAnyObjectByType<Player>();
+
+        DoorUl.position += new Vector3(0, 5, 0);
+        O2Ul.position += new Vector3(-13,0,0);
 
         SeeWa.position = new Vector3(0.21f, 69, 0);
         SeeWa.localScale = new Vector3(25.13f, 32f, 1);
@@ -34,6 +42,14 @@ public class MainDoor : MonoBehaviour
         {
             if (IsPlayerTouched)
             {
+                if (!Started)
+                {
+                    Started = true;
+                    DoorUl.DOMoveY(3.21f, 0.7f).SetEase(Ease.OutQuint);
+                    O2Ul.DOMoveX(-1.09f, 0.7f).SetEase(Ease.OutQuint);
+                    int StartGameTime = Random.Range(9, 12);
+                    Invoke("StartDoor", StartGameTime);
+                }
                 Player.IsDoor = true;
 
                 ProgressObj.SetActive(true);
@@ -64,6 +80,12 @@ public class MainDoor : MonoBehaviour
             SeeWa.DOScale(new Vector3(25.13f, 32f, 1), 0.4f).SetEase(Ease.InQuint);
             SeeWa.DOLocalMove(new Vector3(0.21f, 69, 0), 0.4f).SetEase(Ease.InQuint);
         }
+    }
+
+    //문 열림 시작
+    void StartDoor()
+    {
+        DoorProsess.DoorGimic();
     }
 
     //플레이어 원상복구

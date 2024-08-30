@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CamMove : MonoBehaviour
 {
-    public Transform player; // ÇÃ·¹ÀÌ¾îÀÇ Transform
-    public float minY = -2f; // Ä«¸Þ¶óÀÇ ÃÖ¼Ò Y ÁÂÇ¥
+    public Transform player; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ Transform
+    public float minY = -2f; // Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ Y ï¿½ï¿½Ç¥
     public float maxY = 4f;
     public float minX = -2f;
     public float maxX = 10f;
@@ -13,11 +13,11 @@ public class CamMove : MonoBehaviour
     {
         if (player != null)
         {
-            // ÇÃ·¹ÀÌ¾îÀÇ Y ÁÂÇ¥¸¦ ±âÁØÀ¸·Î Ä«¸Þ¶óÀÇ Y ÁÂÇ¥ ¼³Á¤
+            // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ Y ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ Y ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½
             float targetY = player.position.y;
             float targetX = player.position.x;
 
-            // Y ÁÂÇ¥°¡ minYº¸´Ù ÀÛ¾ÆÁöÁö ¾Êµµ·Ï Á¦ÇÑ
+            // Y ï¿½ï¿½Ç¥ï¿½ï¿½ minYï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (targetY < minY)
             {
                 targetY = minY;
@@ -35,13 +35,13 @@ public class CamMove : MonoBehaviour
                 targetX = maxX;
             }
 
-            // ÇöÀç Ä«¸Þ¶óÀÇ À§Ä¡¸¦ °¡Á®¿È
+            // ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Vector3 currentPosition = transform.position;
 
             currentPosition.y = targetY;
             currentPosition.x = targetX;
 
-            // Ä«¸Þ¶óÀÇ À§Ä¡¸¦ ¾÷µ¥ÀÌÆ®
+            // Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
             transform.position = currentPosition;
         }
     }
