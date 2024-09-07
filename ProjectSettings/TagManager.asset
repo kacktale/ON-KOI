@@ -4,13 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - DoorLockHit
-  - TwoSee
-  - Light
-  - Ladder
   - TpLadder
+  - TwoSee
+  - DoorLockHit
+  - Ground
   - Box
+  - Up
+  - Down
   layers:
   - Default
   - TransparentFX
@@ -18,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - PostProseccing
-  - Ground
+  - 
+  - 
   - 
   - 
   - 

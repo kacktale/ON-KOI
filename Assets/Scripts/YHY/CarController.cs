@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    public CarControllerManager manager;
     public bool isHorizontal = true; // 차량이 수평 또는 수직으로 이동할지 설정
     public float moveSpeed = 5f;     // 이동 속도
-    public float destroyDelay = 1f;  // 사라지는 지연 시간
+    public float destroyDelay = 1f;  // 사라지는 지연 시간 
 
     public SpriteRenderer SpriteRenderer;
 
@@ -54,11 +55,14 @@ public class CarController : MonoBehaviour
                     transform.position += new Vector3(moveSpeed, 0, 0);
                 }
             }
+            if (manager.IsSelected)
+            {
+
+            }
         }
     }
     private void OnMouseDown()
     {
-        Debug.Log("");
         if (!IsSelected)
         {
             IsSelected = true;

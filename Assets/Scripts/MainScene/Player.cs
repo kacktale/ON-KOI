@@ -128,8 +128,11 @@ public class Player : MonoBehaviour
         {
             TwoSeeObj.SetActive(true);
             IsDefault = false;
+
             TwoSee.DOScale(new Vector3(40, 40, 1), 0.4f).SetEase(Ease.InQuint);
+
             IsTwoSeed = true;
+
             StartCoroutine(OffTwoSee());
         }
 
