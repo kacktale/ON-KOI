@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,25 @@ public class Enemy : MonoBehaviour
     public GameObject Player;
     public LayerMask LayerMask;
     public GameObject EnemyScare;
+    public bool IsBoss = false;
+    [NonSerialized]
+    public EnemySpawn enemySpawn;
+
+    private bool IsJumpScare = false;
 
     private Transition transition;
 
     private void Awake()
-    {
-        transition=FindAnyObjectByType<Transition>();
+    { 
+        try
+        {
+            enemySpawn = FindAnyObjectByType<EnemySpawn>();
+        }
+        finally
+        {
+            
+        }
+        transition =FindAnyObjectByType<Transition>();
         EnemyScare.SetActive(false);
     }
 
@@ -69,13 +83,28 @@ public class Enemy : MonoBehaviour
                 StartCoroutine(ChaseOFF());
             }
         }
+        if (collision.gameObject.CompareTag("Light"))
+        {
+            if (!IsJumpScare)
+            {
+                enemySpawn.EnemyDeath();
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision) // OnCollisionEnter2D -> OnCollisionStay2D
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(JumpScare());
+            if (!IsBoss)
+            {
+                StartCoroutine(JumpScare());
+            }
+            else
+            {
+                enemySpawn.PlayerHit();
+            }
         }
     }
 
@@ -86,6 +115,7 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator JumpScare()
     {
+        IsJumpScare = true;
         EnemyScare.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         transition.GameOverTransition();

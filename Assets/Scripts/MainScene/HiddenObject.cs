@@ -14,7 +14,7 @@ public class HiddenObject : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color -= new Color(0, 0, 0, 255);
-        textMeshProUGUI.color -= new Color(0, 0, 0, 255);
+        textMeshProUGUI.DOFade(0, 0.1f);
     }
 
     // Update is called once per frame

@@ -11,6 +11,7 @@ TagManager:
   - Box
   - Up
   - Down
+  - Light
   layers:
   - Default
   - TransparentFX

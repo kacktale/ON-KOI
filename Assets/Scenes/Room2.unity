@@ -2535,7 +2535,7 @@ PrefabInstance:
     - target: {fileID: 1599692169977819096, guid: aecf1d2b353ed71409e2b705e15d5326, type: 3}
       propertyPath: HiddenObj
       value: 
-      objectReference: {fileID: 878784334}
+      objectReference: {fileID: 1063196065}
     - target: {fileID: 1599692169977819096, guid: aecf1d2b353ed71409e2b705e15d5326, type: 3}
       propertyPath: LetterObj
       value: 

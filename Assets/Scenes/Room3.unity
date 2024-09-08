@@ -827,6 +827,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5222aaeb08b2b6468227e709ad3bb3b, type: 3}
+--- !u!114 &503206365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4425678715781087864, guid: 34f5d8e385b87e7418118096c9e262c5, type: 3}
+  m_PrefabInstance: {fileID: 744221634}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &524403240 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4061099374316476455, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
@@ -1570,8 +1581,9 @@ MonoBehaviour:
   Player: {fileID: 524403240}
   LayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   EnemyScare: {fileID: 1577508577}
+  IsBoss: 0
 --- !u!50 &1108731993
 Rigidbody2D:
   serializedVersion: 4
@@ -1828,6 +1840,7 @@ MonoBehaviour:
   BreathUI: {fileID: 374804775}
   Player: {fileID: 1157834446}
   BreathRemaning: {fileID: 374804776}
+  BreathImage: {fileID: 1610438853}
   Isbreath: 0
   IsHide: 0
 --- !u!1 &1278795864
@@ -2899,6 +2912,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2989327973822431401, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.37319645
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989327973822431401, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.29
+      objectReference: {fileID: 0}
     - target: {fileID: 4061099374316476455, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2951,6 +2972,22 @@ PrefabInstance:
       propertyPath: LightObj
       value: 
       objectReference: {fileID: 1408258693}
+    - target: {fileID: 6127646758835802626, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
+      propertyPath: TwoSeeUI
+      value: 
+      objectReference: {fileID: 503206365}
+    - target: {fileID: 6127646758835802626, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
+      propertyPath: TwoSeeSprite.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6127646758835802626, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
+      propertyPath: TwoSeeSprite.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: dbb50db145c325d48b063d2a887cd46a, type: 3}
+    - target: {fileID: 6127646758835802626, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
+      propertyPath: TwoSeeSprite.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5dbbc3a64643f124a94a8d9ca3e80d53, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

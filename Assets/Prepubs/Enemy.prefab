@@ -105,6 +105,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   EnemyScare: {fileID: 258016979184931297, guid: 501f8db316fa03e4983ac5df5742e6ae, type: 3}
+  IsBoss: 1
 --- !u!61 &3878256201806464579
 BoxCollider2D:
   m_ObjectHideFlags: 0

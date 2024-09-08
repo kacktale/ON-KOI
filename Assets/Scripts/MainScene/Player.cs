@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Player : MonoBehaviour
     public AudioSource DefaultSound, TwoSeeSound, FootSteep, TwoSeeEfects;
     public Transform TwoSee;
     public GameObject TwoSeeObj, LightObj;
+    public Image TwoSeeUI, LightUI;
+    public Sprite[] TwoSeeSprite;
+    public Sprite[] lightSprite;
     public bool IsTwoSeed = false;
     public bool IsDefault = true;
 
@@ -93,6 +97,10 @@ public class Player : MonoBehaviour
                 anim.SetBool("IsWalking", true);
             }
         }
+        else
+        {
+            anim.SetBool("IsWalking", false);
+        }
 
         // 오른쪽으로 바라보기
         if (h == 1 && !IsDoor && !IsLight)
@@ -139,6 +147,7 @@ public class Player : MonoBehaviour
         // 투시코드
         if (Input.GetKeyDown(KeyCode.LeftShift) && !IsTwoSeed)
         {
+            TwoSeeUI.sprite = TwoSeeSprite[1];
             TwoSeeObj.SetActive(true);
             IsDefault = false;
 
@@ -152,10 +161,14 @@ public class Player : MonoBehaviour
         // 플래쉬코드(보스전용)
         if (Input.GetKeyDown(KeyCode.Z) && CurCoolTime <= 0 && IsFlashGet && !IsDoor)
         {
+            LightUI.sprite = lightSprite[1];
             CurCoolTime = CoolTime;
             StartCoroutine(LightAttack());
         }
-
+        if(CurCoolTime <= 0)
+        {
+            LightUI.sprite = lightSprite[0];
+        }
         // 사운드 조절(투시 전)
         if (IsDefault && DefaultSound.volume * music.MusicValue < 1)
         {
@@ -219,7 +232,7 @@ public class Player : MonoBehaviour
         TwoSeeObj.SetActive(false);
 
         yield return new WaitForSeconds(2);
-
+        TwoSeeUI.sprite = TwoSeeSprite[0];
         IsTwoSeed = false;
     }
 

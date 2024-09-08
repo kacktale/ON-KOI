@@ -12,15 +12,20 @@ public class EnemySpawn : MonoBehaviour
     
     private GameObject currentEnemy;      // 현재 스폰된 적 객체
 
+    private Transition transition;
+    private AudioSource audioSource;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        transition = FindAnyObjectByType<Transition>();
         JumpScare.SetActive(false);
-        StartCoroutine(SpawnEnemyRoutine()); // 적 스폰 루틴 시작
     }
 
     // 적을 주기적으로 스폰하는 코루틴
-    private IEnumerator SpawnEnemyRoutine()
+    public IEnumerator SpawnEnemyRoutine()
     {
+        Debug.Log("실행시작");
         while (true)
         {
             // 현재 플레이어의 층을 확인
@@ -104,5 +109,19 @@ public class EnemySpawn : MonoBehaviour
 
         // 이동 후 자연스럽게 걷기 시작 (기존 걷기 로직으로 이동)
         // 이 부분은 적의 걷기 로직과 연결해야 할 수 있습니다.
+    }
+    public void PlayerHit()
+    {
+        JumpScare.SetActive(true);
+        Invoke("ReloadTransition", 0.5f);
+    }
+    private void ReloadTransition()
+    {
+        transition.GameOverTransition();
+    }
+
+    public void EnemyDeath()
+    {
+        audioSource.Play();
     }
 }

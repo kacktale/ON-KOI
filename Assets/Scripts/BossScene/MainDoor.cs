@@ -11,15 +11,19 @@ public class MainDoor : MonoBehaviour
     public Slider Progress;
     public GameObject ProgressObj;
     public bool Started = false;
-    [Header("추가설정")]
+    
     Player Player;
+    EnemySpawn enemySpawn;
 
     DoorProsess DoorProsess;
+    [Header("추가설정")]
     public Transform SeeWa,DoorUl,O2Ul;
     public bool IsPlayerTouched = false;
     // Start is called before the first frame update
     void Start()
     {
+        enemySpawn = FindAnyObjectByType<EnemySpawn>();
+
         DoorProsess = FindAnyObjectByType<DoorProsess>();
 
         ProgressObj.SetActive(false);
@@ -48,6 +52,8 @@ public class MainDoor : MonoBehaviour
                     DoorUl.DOMoveY(3.21f, 0.7f).SetEase(Ease.OutQuint);
                     O2Ul.DOMoveX(-0.59f, 0.7f).SetEase(Ease.OutQuint);
                     int StartGameTime = Random.Range(9, 12);
+                    int StartEnemySpawn = Random.Range(13, 16);
+                    Invoke("StartEnemySpawn", StartEnemySpawn);
                     Invoke("StartDoor", StartGameTime);
                 }
                 Player.IsDoor = true;
@@ -81,11 +87,14 @@ public class MainDoor : MonoBehaviour
             SeeWa.DOLocalMove(new Vector3(0.21f, 69, 0), 0.4f).SetEase(Ease.InQuint);
         }
     }
-
     //문 열림 시작
     void StartDoor()
     {
         DoorProsess.DoorGimic();
+    }
+    void StartEnemySpawn()
+    {
+        StartCoroutine(enemySpawn.SpawnEnemyRoutine());
     }
 
     //플레이어 원상복구
