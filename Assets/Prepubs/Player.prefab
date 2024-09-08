@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2989327973822431401}
   - component: {fileID: 4576402617780072337}
   - component: {fileID: 6127646758835802626}
+  - component: {fileID: 3337364985500123912}
   - component: {fileID: 5384952938080013596}
   - component: {fileID: 1162474176877500443}
   m_Layer: 0
@@ -134,7 +135,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.58, y: 2.32}
   m_EdgeRadius: 0
 --- !u!50 &4576402617780072337
 Rigidbody2D:
@@ -182,6 +183,8 @@ MonoBehaviour:
   TwoSee: {fileID: 5357077102511823158}
   TwoSeeObj: {fileID: 6592210061919575686}
   LightObj: {fileID: 0}
+  IsTwoSeed: 0
+  IsDefault: 1
   PlayerSpeed: 5
   CurPlayerSpeed: 5
   PlayerJump: 5
@@ -195,7 +198,27 @@ MonoBehaviour:
   LayerMask:
     serializedVersion: 2
     m_Bits: 128
-  groundCheckDistance: 0.1
+--- !u!95 &3337364985500123912
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061099374316476455}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d18e74436f4c40448a995849adeba17, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &5384952938080013596
 AudioSource:
   m_ObjectHideFlags: 0

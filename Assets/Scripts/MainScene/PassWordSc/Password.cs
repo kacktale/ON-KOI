@@ -12,6 +12,7 @@ public class Password : MonoBehaviour
     public DoorProsess Doorlist;
 
     public bool FinalPhaze = false;
+    private TpLadder TpLadder;
 
     public int PassWordSetting = 0;//랜덤 비번 설정
 
@@ -28,6 +29,7 @@ public class Password : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TpLadder = FindAnyObjectByType<TpLadder>();
         Transition = FindAnyObjectByType<Transition>();
         //DoorLock = FindAnyObjectByType<DoorLock>();
         Player = FindAnyObjectByType<Player>();
@@ -61,22 +63,45 @@ public class Password : MonoBehaviour
                         }
                         else if (FinalPhaze)
                         {
-                            Debug.Log("문이 잠겼습니다.");
-
-                            DoorLock.OffPassWord();
-
-                            DoorLock.isPassWordAppear = false;
-
-                            Player.IsPassword = false;
-                            Player.CurPlayerSpeed = Player.PlayerSpeed;
-                            Player.CurPlayerJump = Player.PlayerJump;
-
-                            PassWordSetting = Random.Range(0, PassWordAnser.Length);
-                            if (!doorGimics[0].Opend)
+                            if (!TpLadder.SecondFloor)
                             {
-                                doorGimics[0].IsOpend = false;
-                                doorGimics[0].Processing.value = 12;
-                                Doorlist.ProCessings[0].color = new Color(0, 255, 0);
+                                Debug.Log("문이 잠겼습니다.");
+
+                                DoorLock.OffPassWord();
+
+                                DoorLock.isPassWordAppear = false;
+
+                                Player.IsPassword = false;
+                                Player.CurPlayerSpeed = Player.PlayerSpeed;
+                                Player.CurPlayerJump = Player.PlayerJump;
+
+                                PassWordSetting = Random.Range(0, PassWordAnser.Length);
+                                if (!doorGimics[0].Opend)
+                                {
+                                    doorGimics[0].IsOpend = false;
+                                    doorGimics[0].Processing.value = 12;
+                                    Doorlist.ProCessings[0].color = new Color(0, 255, 0);
+                                }
+                            }
+                            else
+                            {
+                                Debug.Log("문이 잠겼습니다.");
+
+                                DoorLock.OffPassWord();
+
+                                DoorLock.isPassWordAppear = false;
+
+                                Player.IsPassword = false;
+                                Player.CurPlayerSpeed = Player.PlayerSpeed;
+                                Player.CurPlayerJump = Player.PlayerJump;
+
+                                PassWordSetting = Random.Range(0, PassWordAnser.Length);
+                                if (!doorGimics[2].Opend)
+                                {
+                                    doorGimics[2].IsOpend = false;
+                                    doorGimics[2].Processing.value = 12;
+                                    Doorlist.ProCessings[2].color = new Color(0, 255, 0);
+                                }
                             }
                         }
                     }
@@ -133,25 +158,46 @@ public class Password : MonoBehaviour
                         }
                         else if (FinalPhaze)
                         {
-                            txt_CurPassWord.color = new Color(0, 0, 0, 0);
-                            Debug.Log("문이 잠겼습니다.");
-
-                            if (!doorGimics[1].Opend)
+                            if (!TpLadder.SecondFloor)
                             {
-                                doorGimics[1].IsOpend = false;
-                                doorGimics[1].Processing.value = 12;
-                                Doorlist.ProCessings[1].color = new Color(0, 255, 0);
+                                Debug.Log("문이 잠겼습니다.");
+
+                                DoorLock.OffPassWord();
+
+                                DoorLock.isPassWordAppear = false;
+
+                                Player.IsPassword = false;
+                                Player.CurPlayerSpeed = Player.PlayerSpeed;
+                                Player.CurPlayerJump = Player.PlayerJump;
+
+                                PassWordSetting = Random.Range(0, PassWordAnser.Length);
+                                if (!doorGimics[1].Opend)
+                                {
+                                    doorGimics[1].IsOpend = false;
+                                    doorGimics[1].Processing.value = 12;
+                                    Doorlist.ProCessings[1].color = new Color(0, 255, 0);
+                                }
                             }
+                            else
+                            {
+                                Debug.Log("문이 잠겼습니다.");
 
-                            DoorLock.OffPassWord();
+                                DoorLock.OffPassWord();
 
-                            DoorLock.isPassWordAppear = false;
+                                DoorLock.isPassWordAppear = false;
 
-                            Player.IsPassword = false;
-                            Player.CurPlayerSpeed = Player.PlayerSpeed;
-                            Player.CurPlayerJump = Player.PlayerJump;
+                                Player.IsPassword = false;
+                                Player.CurPlayerSpeed = Player.PlayerSpeed;
+                                Player.CurPlayerJump = Player.PlayerJump;
 
-                            PassWordSetting = Random.Range(0, PassWordAnser.Length);
+                                PassWordSetting = Random.Range(0, PassWordAnser.Length);
+                                if (!doorGimics[3].Opend)
+                                {
+                                    doorGimics[3].IsOpend = false;
+                                    doorGimics[3].Processing.value = 12;
+                                    Doorlist.ProCessings[3].color = new Color(0, 255, 0);
+                                }
+                            }
                         }
                     }
                     else if (passwordAnser != PassWordAnser[PassWordSetting])

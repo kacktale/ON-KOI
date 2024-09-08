@@ -6,6 +6,7 @@ public class EnemySpawn : MonoBehaviour
     public Transform[] firstFloorSpawns;  // 1층 스폰 지점 배열
     public Transform[] secondFloorSpawns; // 2층 스폰 지점 배열
     public GameObject enemy;              // 스폰할 적 객체
+    public GameObject JumpScare;
     public float spawnInterval = 5f;      // 적이 스폰될 시간 간격
     public float enemyLifetime = 3f;      // 적의 생명 시간 (지속 시간)
     
@@ -13,6 +14,7 @@ public class EnemySpawn : MonoBehaviour
 
     void Start()
     {
+        JumpScare.SetActive(false);
         StartCoroutine(SpawnEnemyRoutine()); // 적 스폰 루틴 시작
     }
 

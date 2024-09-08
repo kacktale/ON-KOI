@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class TpLadder : MonoBehaviour
 {
+    public Password Password;
     public CamMove CamMove;
     public Transform PlayerPos;
     public bool PlayerEnter, SecondFloor = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Password = FindAnyObjectByType<Password>();
     }
 
     // Update is called once per frame

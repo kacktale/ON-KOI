@@ -46,7 +46,7 @@ public class MainDoor : MonoBehaviour
                 {
                     Started = true;
                     DoorUl.DOMoveY(3.21f, 0.7f).SetEase(Ease.OutQuint);
-                    O2Ul.DOMoveX(-1.09f, 0.7f).SetEase(Ease.OutQuint);
+                    O2Ul.DOMoveX(-0.59f, 0.7f).SetEase(Ease.OutQuint);
                     int StartGameTime = Random.Range(9, 12);
                     Invoke("StartDoor", StartGameTime);
                 }

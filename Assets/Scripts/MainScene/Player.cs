@@ -14,8 +14,8 @@ public class Player : MonoBehaviour
     public bool IsTwoSeed = false;
     public bool IsDefault = true;
 
-    [Header("플레이어 설정")]
     Rigidbody2D rigid;
+    [Header("플레이어 설정")]
     public float PlayerSpeed = 5f;
     public float CurPlayerSpeed = 5f;
     public float PlayerJump = 5f;
@@ -23,7 +23,8 @@ public class Player : MonoBehaviour
     public float CoolTime = 5f;
     public float CurCoolTime = 5f;
     bool isjump = false;
-    float PlayerRayEdge = 0.45f; 
+    float PlayerRayEdge = 0.45f;
+    private Animator anim;
 
     [Header("콜라이더 & 인터랙션")]
     public bool IsGround = false;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim= GetComponent<Animator>();
         music = FindAnyObjectByType<Music>();
 
         LightToAttack = FindAnyObjectByType<LightToAttack>();
@@ -64,10 +66,10 @@ public class Player : MonoBehaviour
         if (!isjump)
         {
             Vector2 PlayerEdge = new Vector2(transform.position.x - PlayerRayEdge, transform.position.y);
-            RaycastHit2D Edgehit = Physics2D.Raycast(PlayerEdge, Vector2.down, 0.52f, LayerMask);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.52f, LayerMask);
-            Debug.DrawRay(PlayerEdge, Vector2.down, new Color(0, 1, 0));
-            Debug.DrawRay(transform.position, Vector2.down, new Color(0, 1, 0));
+            RaycastHit2D Edgehit = Physics2D.Raycast(PlayerEdge, Vector2.down, 1.2f, LayerMask);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.2f, LayerMask);
+            Debug.DrawRay(PlayerEdge, Vector2.down * 1.2f, new Color(0, 1, 0));
+            Debug.DrawRay(transform.position, Vector2.down * 1.2f, new Color(0, 1, 0));
             if (Edgehit.collider != null || hit.collider != null)
             {
                 //Debug.Log(hit.collider.name);
@@ -80,6 +82,17 @@ public class Player : MonoBehaviour
         }
 
         float h = Input.GetAxisRaw("Horizontal");
+        if (!IsLight && !IsDoor)
+        {
+            if (h == 0)
+            {
+                anim.SetBool("IsWalking", false);
+            }
+            else
+            {
+                anim.SetBool("IsWalking", true);
+            }
+        }
 
         // 오른쪽으로 바라보기
         if (h == 1 && !IsDoor && !IsLight)
@@ -180,11 +193,15 @@ public class Player : MonoBehaviour
     // 플래쉬 공격
     public IEnumerator LightAttack()
     {
+        anim.SetBool("IsLight", true);
+        anim.SetBool("IsWalking", false);
         IsLight = true;
         LightObj.SetActive(true);
 
         yield return new WaitForSeconds(1);
 
+        anim.SetBool("IsLight", false);
+        anim.SetBool("IsWalking", false);
         IsLight = false;
         LightObj.SetActive(false);
     }

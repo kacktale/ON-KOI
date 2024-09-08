@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 public class Transition : MonoBehaviour
 {
-    Image SpriteRenderer;
+    SpriteRenderer SpriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
-        SpriteRenderer = GetComponent<Image>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
         SpriteRenderer.DOColor(new Color(0, 0, 0, 0), 0.5f);
     }
     public IEnumerator MoveToNextScene()
@@ -21,5 +21,16 @@ public class Transition : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);
+    }
+    public void GameOverTransition()
+    {
+        StartCoroutine(ReLoadTransition());
+    }
+    public IEnumerator ReLoadTransition()
+    {
+        SpriteRenderer.color = Color.black;
+        yield return new WaitForSeconds(0.5f);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 }
