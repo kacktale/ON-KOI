@@ -67,9 +67,9 @@ public class MainDoor : MonoBehaviour
                 SeeWa.DOScale(new Vector3(1, 1.28f, 1), 0.4f).SetEase(Ease.OutQuint);
                 SeeWa.DOLocalMove(new Vector3(0.21f,2.7f,0),0.4f).SetEase(Ease.OutQuint);
 
-                if(Progress.value > 180)
+                if(Progress.value > 60)
                 {
-                    Progress.value = 180;
+                    Progress.value = 60;
                 }
 
                 Progress.value += Time.deltaTime;

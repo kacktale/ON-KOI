@@ -70,12 +70,12 @@ public class EnemySpawn : MonoBehaviour
         if (spawnPoint.CompareTag("Up"))
         {
             // 사다리 타고 올라가는 동작 (1층 -> 2층)
-            StartCoroutine(MoveEnemyAlongLadder(Vector3.up * (4.4f - spawnPoint.position.y)));
+            StartCoroutine(MoveEnemyAlongLadder(Vector3.up * (4.4f - spawnPoint.position.y)/10));
         }
         else if (spawnPoint.CompareTag("Down"))
         {
             // 사다리 타고 내려가는 동작 (2층 -> 1층)
-            StartCoroutine(MoveEnemyAlongLadder(Vector3.down * (spawnPoint.position.y - -3.1f)));
+            StartCoroutine(MoveEnemyAlongLadder(Vector3.down * (spawnPoint.position.y-3.1f)/10));
         }
         else
         {
@@ -90,7 +90,7 @@ public class EnemySpawn : MonoBehaviour
     // 적을 사다리를 따라 이동시키는 코루틴
     private IEnumerator MoveEnemyAlongLadder(Vector3 direction)
     {
-        float ladderSpeed = 7f; // 사다리 타는 속도
+        float ladderSpeed = 117f; // 사다리 타는 속도
         float ladderMovementDistance = direction.magnitude; // 사다리 이동 거리
 
         float startTime = Time.time;
