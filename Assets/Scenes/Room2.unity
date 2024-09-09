@@ -123,54 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &137350993
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 137350995}
-  - component: {fileID: 137350994}
-  m_Layer: 0
-  m_Name: Music
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &137350994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137350993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bca3a2078933d646a3e6ba2679b395a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicValue: 1
-  SoundEffectValue: 1
-  PostValue: 1
-  BloomValue: 5.11
---- !u!4 &137350995
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137350993}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.730104, y: -3.2070014, z: 0.10869761}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &150469764
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +458,17 @@ MonoBehaviour:
   Music: {fileID: 0}
   PostProcessVolume: {fileID: 320349861}
   bloom: {fileID: 0}
+--- !u!114 &344051205 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4425678715781087864, guid: 34f5d8e385b87e7418118096c9e262c5, type: 3}
+  m_PrefabInstance: {fileID: 1379083349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &357438424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2491,6 +2454,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6127646758835802626, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
+      propertyPath: TwoSeeUI
+      value: 
+      objectReference: {fileID: 344051205}
+    - target: {fileID: 6127646758835802626, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
       propertyPath: PlayerJump
       value: 7.5
       objectReference: {fileID: 0}
@@ -4208,4 +4175,3 @@ SceneRoots:
   - {fileID: 2017823569}
   - {fileID: 1175076153}
   - {fileID: 1063196069}
-  - {fileID: 137350995}

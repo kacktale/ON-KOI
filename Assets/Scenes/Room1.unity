@@ -803,6 +803,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8216732877067812726, guid: 67a8a242d620c6745a390a84e903e615, type: 3}
   m_PrefabInstance: {fileID: 8238805926989843996}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &710937047 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4425678715781087864, guid: 34f5d8e385b87e7418118096c9e262c5, type: 3}
+  m_PrefabInstance: {fileID: 7504794657971614600}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &770889166
 GameObject:
   m_ObjectHideFlags: 0
@@ -4097,6 +4108,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6127646758835802626, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
+      propertyPath: TwoSeeUI
+      value: 
+      objectReference: {fileID: 710937047}
     - target: {fileID: 6127646758835802626, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
       propertyPath: IsFlashGet
       value: 0

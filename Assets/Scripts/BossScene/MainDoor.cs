@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 //보스 전용 코드
@@ -67,9 +68,10 @@ public class MainDoor : MonoBehaviour
                 SeeWa.DOScale(new Vector3(1, 1.28f, 1), 0.4f).SetEase(Ease.OutQuint);
                 SeeWa.DOLocalMove(new Vector3(0.21f,2.7f,0),0.4f).SetEase(Ease.OutQuint);
 
-                if(Progress.value > 60)
+                if(Progress.value > Progress.maxValue)
                 {
-                    Progress.value = 60;
+                    SceneManager.LoadScene(0);
+                    Debug.Log("탈출성공");
                 }
 
                 Progress.value += Time.deltaTime;

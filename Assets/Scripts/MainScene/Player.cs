@@ -165,7 +165,7 @@ public class Player : MonoBehaviour
             CurCoolTime = CoolTime;
             StartCoroutine(LightAttack());
         }
-        if(CurCoolTime <= 0)
+        if(CurCoolTime <= 0 && IsFlashGet)
         {
             LightUI.sprite = lightSprite[0];
         }

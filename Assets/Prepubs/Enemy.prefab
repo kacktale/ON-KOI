@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HideObj: {fileID: 0}
-  IsChase: 1
+  IsChase: 0
   Player: {fileID: 4061099374316476455, guid: 4aee4cd3369e58f4ea6f7f5b94fbe805, type: 3}
   LayerMask:
     serializedVersion: 2

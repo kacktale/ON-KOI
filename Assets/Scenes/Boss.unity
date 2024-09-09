@@ -651,7 +651,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 60
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -927,7 +927,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8513769928766400539, guid: 34f5d8e385b87e7418118096c9e262c5, type: 3}
-      insertIndex: 3
+      insertIndex: -1
       addedObject: {fileID: 763554317}
     - targetCorrespondingSourceObject: {fileID: 8513769928766400539, guid: 34f5d8e385b87e7418118096c9e262c5, type: 3}
       insertIndex: -1
@@ -4267,7 +4267,7 @@ MonoBehaviour:
   - {fileID: 803679871}
   enemy: {fileID: 7606635511445240329, guid: 2abf2bd807bcfb9449f4d375df688987, type: 3}
   JumpScare: {fileID: 1386235009}
-  spawnInterval: 3
+  spawnInterval: 6
   enemyLifetime: 8
 --- !u!82 &1411231543
 AudioSource:
@@ -5513,54 +5513,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3d059cd0a99b5b45b6b9ee329338bc1, type: 3}
---- !u!1 &2004085088
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2004085090}
-  - component: {fileID: 2004085089}
-  m_Layer: 0
-  m_Name: Music
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2004085089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004085088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bca3a2078933d646a3e6ba2679b395a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicValue: 1
-  SoundEffectValue: 1
-  PostValue: 1
-  BloomValue: 5.11
---- !u!4 &2004085090
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004085088}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.730104, y: -3.2070014, z: 0.10869761}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2035086653
 GameObject:
   m_ObjectHideFlags: 0
@@ -6424,4 +6376,3 @@ SceneRoots:
   - {fileID: 108243443}
   - {fileID: 114261528}
   - {fileID: 1411231541}
-  - {fileID: 2004085090}

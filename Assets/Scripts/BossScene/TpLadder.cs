@@ -5,6 +5,7 @@ using UnityEngine;
 public class TpLadder : MonoBehaviour
 {
     public Password Password;
+    private GameObject currentEnemy;
     public CamMove CamMove;
     public Transform PlayerPos;
     public bool PlayerEnter, SecondFloor = false;
@@ -17,6 +18,7 @@ public class TpLadder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentEnemy = GameObject.Find("Enemy");
         if (PlayerEnter)
         {
             if(Input.GetKeyDown(KeyCode.LeftControl))

@@ -10,10 +10,12 @@ public class DoorGimic : MonoBehaviour
     public bool Opend = false; // 문이 열려서 연기가 들어옴
     public Image DoorWarning,O2Col;
     bool isWarningActive = false;
+    Transition Transition;
 
     // Start is called before the first frame update
     void Start()
     {
+        Transition = FindAnyObjectByType<Transition>();
         Processing = GetComponent<Slider>();
     }
 
@@ -34,9 +36,15 @@ public class DoorGimic : MonoBehaviour
 
             if (Processing.value <= 0)
             {
-                O2Val.value--;
-                O2Col.color += new Color(85,0,0);
-                Opend = true;
+                if (O2Val.value <=0)
+                {
+                    Transition.GameOverTransition();
+                }
+                else
+                {
+                    O2Val.value--;
+                    Opend = true;
+                }
             }
         }
     }

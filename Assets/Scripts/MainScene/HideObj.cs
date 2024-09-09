@@ -105,6 +105,7 @@ public class HideObj : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
 
         Player.TwoSeeObj.SetActive(false);
+        Player.TwoSeeUI.sprite = Player.TwoSeeSprite[0];
         Player.IsTwoSeed = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
